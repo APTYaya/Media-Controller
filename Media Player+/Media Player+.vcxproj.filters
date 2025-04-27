@@ -15,13 +15,19 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main\Console.cpp">
+    <ClCompile Include="Main\WinMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MediaPlayer\MediaController.cpp">
+    <ClCompile Include="Media Controller\MediaController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Main\Windowproc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Menus &amp; Buttons\VolumeMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Menus &amp; Buttons\Buttons.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
