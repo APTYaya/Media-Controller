@@ -18,7 +18,7 @@ LRESULT CALLBACK PopupWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPa
 			return 0;
 
     case WM_KILLFOCUS:
-		hwndSystemVolumeSlider = (HWND)wParam;
+        hwndSystemVolumeSlider = (HWND)wParam;
 
         if (!IsChild(hwnd, hwndSystemVolumeSlider)) {
             DestroyWindow(hwnd);
@@ -28,6 +28,7 @@ LRESULT CALLBACK PopupWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPa
 
     case WM_DESTROY:
         hwndVolumeMenu = NULL;  
+		ReleaseCapture();
 		UnregisterClassW(L"VolumeMenuWindow", GetModuleHandle(NULL));
         return 0;
 

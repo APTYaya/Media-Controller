@@ -35,10 +35,6 @@ void SetSystemVolume(int volumePercent) {
 
 	float normalizedVolume = volumePercent / 100.0f;
 
-	if (normalizedVolume < 0.005f) {
-		normalizedVolume = 0.0000f;
-	}
-
 	HRESULT hr = CoInitialize(NULL);
 	if (FAILED(hr)) {
 		return;
@@ -62,6 +58,13 @@ void SetSystemVolume(int volumePercent) {
 		hr = pDevice->Activate(__uuidof(IAudioEndpointVolume), CLSCTX_ALL, NULL, (void**)&pEndpointVolume);
 	}
 	if (SUCCEEDED(hr)) {
+		if (normalizedVolume == 0.0f) {
+			pEndpointVolume->SetMute(TRUE, NULL);
+		}
+		else
+		{
+			pEndpointVolume->SetMute(FALSE, NULL);
+		}
 		pEndpointVolume->SetMasterVolumeLevelScalar(normalizedVolume, NULL);
 	}
 
