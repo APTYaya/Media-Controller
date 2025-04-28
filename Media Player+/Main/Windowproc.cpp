@@ -24,13 +24,10 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
             SendMediaKey(VK_MEDIA_NEXT_TRACK);
             break;
         case BTN_POPUP:
-            // Toggle the volume menu
             if (hwndVolumeMenu == NULL) {
-                // If the menu is not open, open it
                 VolumeMenu(hwnd);
             }
             else {
-                // If it's open, close it
                 DestroyWindow(hwndVolumeMenu);
                 hwndVolumeMenu = NULL;
             }

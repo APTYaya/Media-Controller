@@ -2,6 +2,7 @@
 
 #pragma comment(lib, "ole32.lib")
 #pragma comment(lib, "uuid.lib")
+#pragma comment(lib, "comctl32.lib")
 
 #include <windows.h>
 #include <tchar.h>
@@ -29,6 +30,9 @@ extern void SendMediaKey(WORD keyCode);
 extern int GetSystemVolume();
 extern int GetAppVolume();
 extern void VolumeControl(int volume);
+extern void SetSystemVolume(int volumePercent);
+extern void CheckAudioOutputDevices();
+
 
 // Menu/Button Functions
 // extern void ButtonDrawing();

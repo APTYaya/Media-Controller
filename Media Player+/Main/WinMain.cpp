@@ -26,7 +26,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
     if (!hwnd)
         return 0;
-
+    CheckAudioOutputDevices();
     CreateWindow(L"BUTTON", L"Previous", WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
         10, 30, 80, 30, hwnd, (HMENU)BTN_PREV, hInstance, NULL);
     CreateWindow(L"BUTTON", L"Play/Pause", WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,

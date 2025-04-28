@@ -3,13 +3,27 @@
 HWND hwndVolumeMenu = NULL;
 
 LRESULT CALLBACK PopupWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+    HWND hwndSystemVolumeSlider = NULL;
     switch (uMsg) {
     case WM_CREATE:
         return 0;
 
+    case WM_HSCROLL
+		:
+			hwndSystemVolumeSlider = (HWND)lParam;
+			if (hwndSystemVolumeSlider) {
+				int volumePercent = SendMessage(hwndSystemVolumeSlider, TBM_GETPOS, 0, 0);
+				SetSystemVolume(volumePercent);
+			}
+			return 0;
+
     case WM_KILLFOCUS:
-        DestroyWindow(hwnd);
-        hwndVolumeMenu = NULL;
+		hwndSystemVolumeSlider = (HWND)wParam;
+
+        if (!IsChild(hwnd, hwndSystemVolumeSlider)) {
+            DestroyWindow(hwnd);
+            hwndVolumeMenu = NULL;
+        }
         return 0;
 
     case WM_DESTROY:
@@ -55,6 +69,16 @@ void VolumeMenu(HWND parentHwnd) {
         200, 200,    
         parentHwnd, NULL, wc.hInstance, NULL
     );
+
+	HWND hwndSystemVolumeSlider = CreateWindowEx(
+		WS_EX_CONTROLPARENT,
+		TRACKBAR_CLASS,
+		L"System Volume",
+		WS_CHILD | WS_VISIBLE, 
+		10, 10, 180, 30,
+		hwndVolumeMenu, NULL, wc.hInstance, NULL
+	);
+	SendMessage(hwndSystemVolumeSlider, TBM_SETRANGE, TRUE, MAKELONG(0, 100));
 
     if (hwndVolumeMenu) {
         ShowWindow(hwndVolumeMenu, SW_SHOW);
