@@ -130,11 +130,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GUI Elements\Volume Sliders.cpp" />
     <ClCompile Include="Main\WinMain.cpp" />
     <ClCompile Include="Main\Windowproc.cpp" />
-    <ClCompile Include="Media Controller\MediaController.cpp" />
-    <ClCompile Include="Menus &amp; Buttons\Buttons.cpp" />
-    <ClCompile Include="Menus &amp; Buttons\VolumeMenu.cpp" />
+    <ClCompile Include="Media &amp; Audio\Audio Control.cpp" />
+    <ClCompile Include="Media &amp; Audio\Fetch Audio.cpp" />
+    <ClCompile Include="GUI Elements\Buttons.cpp" />
+    <ClCompile Include="Media &amp; Audio\Media control.cpp" />
+    <ClCompile Include="Menus\Settings Menu.cpp" />
+    <ClCompile Include="Temp\Timers.cpp" />
+    <ClCompile Include="Menus\Volume Menu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Main.h" />

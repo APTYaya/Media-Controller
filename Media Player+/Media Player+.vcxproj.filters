@@ -18,16 +18,31 @@
     <ClCompile Include="Main\WinMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Media Controller\MediaController.cpp">
+    <ClCompile Include="Media &amp; Audio\Fetch Audio.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Main\Windowproc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Menus &amp; Buttons\VolumeMenu.cpp">
+    <ClCompile Include="Menus\Volume Menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Menus &amp; Buttons\Buttons.cpp">
+    <ClCompile Include="GUI Elements\Buttons.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Temp\Timers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Menus\Settings Menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Media &amp; Audio\Media control.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Media &amp; Audio\Audio Control.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI Elements\Volume Sliders.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

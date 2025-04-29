@@ -1,5 +1,7 @@
 #include "Main.h"
 
+HWND MediaController = NULL;
+
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
     INITCOMMONCONTROLSEX icex;
@@ -14,7 +16,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     wc.lpszClassName = CLASS_NAME;
     RegisterClass(&wc);
 
-    HWND hwnd = CreateWindowEx(
+    MediaController = CreateWindowEx(
         WS_EX_TOPMOST,
         CLASS_NAME,
         L"Media Controller",
@@ -24,21 +26,21 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         NULL, NULL, hInstance, NULL
     );
 
-    if (!hwnd)
+
+    if (!MediaController)
         return 0;
-    CheckAudioOutputDevices();
     CreateWindow(L"BUTTON", L"Previous", WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
-        10, 30, 80, 30, hwnd, (HMENU)BTN_PREV, hInstance, NULL);
+        10, 30, 80, 30, MediaController, (HMENU)BTN_PREV, hInstance, NULL);
     CreateWindow(L"BUTTON", L"Play/Pause", WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
-        100, 30, 80, 30, hwnd, (HMENU)BTN_PLAYPAUSE, hInstance, NULL);
+        100, 30, 80, 30, MediaController, (HMENU)BTN_PLAYPAUSE, hInstance, NULL);
     CreateWindow(L"BUTTON", L"Next", WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
-        190, 30, 80, 30, hwnd, (HMENU)BTN_NEXT, hInstance, NULL);
+        190, 30, 80, 30, MediaController, (HMENU)BTN_NEXT, hInstance, NULL);
 	CreateWindow(L"BUTTON", L"ShowMenu", WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
-		10, 70, 80, 30, hwnd, (HMENU)BTN_POPUP, hInstance, NULL);
+		10, 70, 80, 30, MediaController, (HMENU)BTN_POPUP, hInstance, NULL);
 
-
-    ShowWindow(hwnd, nCmdShow);
-    UpdateWindow(hwnd);
+	FetchAudioOutputs();
+    ShowWindow(MediaController, nCmdShow);
+    UpdateWindow(MediaController);
 
     MSG msg = {};
     while (GetMessage(&msg, NULL, 0, 0))
