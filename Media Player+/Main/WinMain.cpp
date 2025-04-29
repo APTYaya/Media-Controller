@@ -2,6 +2,8 @@
 
 HWND MediaController = NULL;
 
+
+// Entry Point
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
     INITCOMMONCONTROLSEX icex;
@@ -16,6 +18,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     wc.lpszClassName = CLASS_NAME;
     RegisterClass(&wc);
 
+    // Main Window
     MediaController = CreateWindowEx(
         WS_EX_TOPMOST,
         CLASS_NAME,
@@ -26,7 +29,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         NULL, NULL, hInstance, NULL
     );
 
-
+	// Create buttons
     if (!MediaController)
         return 0;
     CreateWindow(L"BUTTON", L"Previous", WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,

@@ -4,6 +4,8 @@ HWND g_hwndSystemVolumeSlider = NULL;
 HWND hwndVolumeMenu = NULL;
 std::map<HWND, int> appVolumeTrackbars;
 
+
+// Window procedure for the volume menu
 LRESULT CALLBACK PopupWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 
     switch (uMsg) {
@@ -50,6 +52,7 @@ LRESULT CALLBACK PopupWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPa
     }
 }
 
+// Function to create the volume menu
 void VolumeMenu(HWND parentHwnd) {  
    if (hwndVolumeMenu != NULL) {  
        DestroyWindow(hwndVolumeMenu);  
@@ -72,8 +75,7 @@ void VolumeMenu(HWND parentHwnd) {
    }  
 
    POINT pt;  
-   GetCursorPos(&pt);  
-
+   GetCursorPos(&pt); 
    hwndVolumeMenu = CreateWindowEx(  
        0,  
        CLASS_NAME,  
@@ -83,6 +85,8 @@ void VolumeMenu(HWND parentHwnd) {
        400, 400,    
        parentHwnd, NULL, wc.hInstance, NULL  
    );  
+
+   // Create Trackbar for System Volume
    g_hwndSystemVolumeSlider = CreateWindowEx(  
        WS_EX_CONTROLPARENT,  
        TRACKBAR_CLASS,  
@@ -93,6 +97,7 @@ void VolumeMenu(HWND parentHwnd) {
    );  
    SendMessage(g_hwndSystemVolumeSlider, TBM_SETRANGE, TRUE, MAKELPARAM(0, 100));
 
+   // Loop for generating App Volume Trackbars
          appVolumeTrackbars.clear(); 
          for (size_t i = 0; i < g_audioSessions.size(); i++) {
              HWND hwndAppVolumeSlider = CreateWindowEx(
@@ -104,7 +109,7 @@ void VolumeMenu(HWND parentHwnd) {
                  hwndVolumeMenu, NULL, wc.hInstance, NULL
              );
              SendMessage(hwndAppVolumeSlider, TBM_SETRANGE, TRUE, MAKELPARAM(0, 100));
-             appVolumeTrackbars[hwndAppVolumeSlider] = i; // Explicit cast to int
+             appVolumeTrackbars[hwndAppVolumeSlider] = i; 
          }
     
    if (hwndVolumeMenu) {  
