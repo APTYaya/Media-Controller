@@ -19,10 +19,8 @@ std::wstring GetProcessNameFromId(DWORD processId) {
 }
 // Fetching System volume and App Audio Session volume
 void FetchAudioOutputs() {
-    HRESULT hr = CoInitialize(NULL);
-    if (FAILED(hr)) {
+	if (FAILED(CoInitialize(NULL)))
         return;
-    }
 
     // SYSTEM VOLUME SETUP  
     {
@@ -32,10 +30,10 @@ void FetchAudioOutputs() {
         if (FAILED(CoCreateInstance(__uuidof(MMDeviceEnumerator), NULL, CLSCTX_ALL, __uuidof(IMMDeviceEnumerator), (void**)&pEnumerator)))
             return;
         {
-        if (FAILED(pEnumerator->GetDefaultAudioEndpoint(eRender, eConsole, &pDevice)))
-	        return;
-             pDevice->Activate(__uuidof(IAudioEndpointVolume), CLSCTX_ALL, NULL, (void**)&g_SystemVolume);
-            
+            if (FAILED(pEnumerator->GetDefaultAudioEndpoint(eRender, eConsole, &pDevice)))
+                return;
+            pDevice->Activate(__uuidof(IAudioEndpointVolume), CLSCTX_ALL, NULL, (void**)&g_SystemVolume);
+
         }
         // Clean up
 		pDevice->Release();
